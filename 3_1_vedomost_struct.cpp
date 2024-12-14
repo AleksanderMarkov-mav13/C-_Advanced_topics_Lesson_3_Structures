@@ -21,7 +21,9 @@ int main()
         cin >> choice;
         if (choice == "list") {
             ifstream file("vedomost_1.txt");
-            while (file >> temp.surname, file >> temp.name, file >> temp.date, file >> temp.sum) {
+            while (!file.eof())
+            {
+                file >> temp.surname, file >> temp.name, file >> temp.date, file >> temp.sum;
                 vec_vedomost.push_back(temp);
             }
             file.close();
@@ -39,7 +41,6 @@ int main()
             cin >> temp.date;
             cout << "Input sum: ";
             cin >> temp.sum;
-            vec_vedomost.push_back(temp);
             ofstream file("vedomost_1.txt", ios::app);
             file << endl << temp.surname << " " << temp.name << " " << temp.date << " " << temp.sum;
             file.close();
